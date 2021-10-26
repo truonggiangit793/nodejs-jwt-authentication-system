@@ -1,0 +1,55 @@
+<div class="container d-flex justify-content-center mb-5 mt-5">
+    <form style="width: 400px;">
+        <h1 class="mb-5 text-center">Sign in</h1>
+        <!-- Email input -->
+        <div class="form-outline mb-4">
+            <input type="email" id="email" name="email" class="form-control" />
+            <label class="form-label" for="email">Email address</label>
+        </div>
+
+        <!-- Password input -->
+        <div class="form-outline mb-4">
+            <input type="password" id="password" name="password" class="form-control" />
+            <label class="form-label" for="password">Password</label>
+        </div>
+
+        <!-- Forgot password -->
+        <div class="mb-4">
+            <div class=" d-flex justify-content-center">
+                <a href="<%= process.env.BASE_URL %>/forgot">Forgot password?</a>
+            </div>
+        </div>
+
+        <!-- Submit button -->
+        <div class="mb-4">
+            <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+        </div>
+
+        <!-- Register -->
+        <div class="mb-4">
+            <div class=" d-flex justify-content-center">
+                <a href="<%= process.env.BASE_URL %>/register">Sign up</a>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    $("form").submit(function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: "./api/account/login?api_key=<%= process.env.API_KEY %>&returnURL=<%= returnURL %>",
+            data: {
+                email: $("#email").val(),
+                password: $("#password").val(),
+            }
+        }).done(function (response) {
+            if (response.status) {
+                window.location = response.url;
+            } else {
+                alert(response.message);
+            };
+        });
+    });
+</script>
