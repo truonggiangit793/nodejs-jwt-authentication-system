@@ -2,12 +2,14 @@
 
 Authentication system using "jsonwebtoken".
 
+## Requirements
+- [Node.js](https://nodejs.org/)
+- [MongoDB](https://mongodb.com/)
+
 ## Setup
 - Rename ".env.example" to ".env"
 
 ## Installation
-
-Requires [Node.js](https://nodejs.org/) to run.
 
 Install the dependencies and devDependencies and start the server.
 
